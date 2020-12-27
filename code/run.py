@@ -9,7 +9,7 @@ from GMM import ss_GaussianMixtureModels
 data = numpy.load('./data/multi/numpy/feature.npy')
 label = numpy.load('./data/multi/numpy/label.npy')
 label = label.astype(numpy.int)-1
-name = numpy.load('./data/multi/labeled/name.npy')
+data_unlabel = numpy.load('./data/multi/unlabelled/feature_unlabel.npy')
 
 """ 
     # data = PCA(n_components=3).fit_transform(data_)
@@ -54,5 +54,6 @@ test_label = label[index][int(rate*len(data)):]
 # acc,_ = ss_GaussianMixtureModels(train_data,train_label,test_data,test_label,0.7,1.0,1000,True)
 # print("Classifier GMM:%f"%acc)
 #S3VM
-
+# in S3VM.py
 #MR
+# in MR.py
