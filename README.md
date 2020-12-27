@@ -29,7 +29,7 @@ pydub库只支持原生的wav格式的文件处理,librosa库无法直接读取m
 
 * 测试精度的文件为'.code/run.py'.
 
-* 用户界面(GUI)由'.main/main.py','.main/knn_classifier.py'两个脚本实现,其中'./main.py'为运行文件.
+* 用户界面(GUI)由'./main/main.py','./main/knn_classifier.py'两个脚本实现,其中'./main.py'为运行文件.
 
 3 **数据集**
 --------------------------------------------------------------
@@ -46,10 +46,12 @@ pydub库只支持原生的wav格式的文件处理,librosa库无法直接读取m
 ### 4.1 启动
 * 如果需要测试的文件在默认文件夹, 即运行目录下的./test, 请命令行调用  
 ```bash
+cd ./main
 python main.py -path-test ./test
 ```
 * 如果需要测试的mp3文件不在默认文件夹,请输入
 ```bash
+cd ./main
 python main.py -path-test path_to_test_folder
 ```
 
@@ -79,6 +81,10 @@ python main.py -path-test path_to_test_folder
 * 只使用有标签数据的情况下, 采用kNN算法, 度量采用LSMN生成的马氏度量.  
 * 联合使用无标签数据时, 通过GMM算法生成伪标签, 再使用同样的kNN算法.  
 * 情绪成分分析的结果是根据邻居们到测试数据的距离, 取负数, 计算softmax得到的. 
+
+6 **数据集扩展**
+--------------------------------------------------------------
+如果需要扩展用户程序的数据集, 请按照 3.2 节的方法处理数据, 并以相同的文件名保存在train_labeled, train_unlabel, test文件夹中. 
 
 <!-- 6 **数据集扩展**
 --------------------------------------------------------------
