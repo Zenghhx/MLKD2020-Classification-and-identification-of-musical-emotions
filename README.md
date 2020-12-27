@@ -9,7 +9,12 @@ Windows 10 64-bit, python >= 3.7.0
 
 ### 1.1 主要使用的库:
 
-PySide2==5.15.2, metric-learn==0.6.2, scikit-learn==0.23.2, scipy==1.5.4, librosa==0.8.0, pydub==0.24.1.
+* PySide2==5.15.2
+* metric-learn==0.6.2
+* scikit-learn==0.23.2
+* scipy==1.5.4
+* librosa==0.8.0
+* pydub==0.24.1.
 全部库依赖和版本详见 [requirement.txt](requirement.txt).
 
 ### 1.2 环境变量修改
