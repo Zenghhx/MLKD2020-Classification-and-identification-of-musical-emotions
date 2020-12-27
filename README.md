@@ -25,11 +25,11 @@ pydub库只支持原生的wav格式的文件处理,librosa库无法直接读取m
 
 2 **代码文件说明**
 --------------------------------------------------------------
-* 音乐的重命名脚本为'./rename.py',分割脚本为'./split.py',特征提取函数在脚本'./Extract_feature.py'中,从数据集中提取特征并保存的脚本为'./data_prepare.py',大部分分类器在脚本'./classifier.py'中,高斯混合模型在脚本'./ssGMM.py'中,流形正则化模型在脚本'./MR.py'中.
+* 音乐的重命名脚本为'.code/rename.py',分割脚本为'.code/split.py',特征提取函数在脚本'.code/Extract_feature.py'中,从数据集中提取特征并保存的脚本为'.code/data_prepare.py',大部分分类器在脚本'.code/classifier.py'中,高斯混合模型在脚本'.code/ssGMM.py'中,流形正则化模型在脚本'.code/MR.py'中.
 
-* 测试精度的文件为'./run.py'.
+* 测试精度的文件为'.code/run.py'.
 
-* 用户界面(GUI)由'./main.py','./knn_classifier.py'两个脚本实现,其中'./main.py'为运行文件.
+* 用户界面(GUI)由'.main/main.py','.main/knn_classifier.py'两个脚本实现,其中'./main.py'为运行文件.
 
 3 **数据集**
 --------------------------------------------------------------
