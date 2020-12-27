@@ -7,7 +7,7 @@
 # at the University of Illinos at Urbana-Champaign
 #
 #####################################################################
-
+# 本程序被S3VM调用, 请运行大写的S3VM.py
 from sklearn.kernel_approximation import RBFSampler
 from sklearn.preprocessing import PolynomialFeatures
 from collections import deque

@@ -131,10 +131,10 @@ def ss_GaussianMixtureModels(Xtrain, ytrain, Xtest, ytest,beta, tol, max_iterati
             sigma_inv[sigma_ID] = np.linalg.pinv(sigma[sigma_ID], rcond = cond_tolerance)
             #det_sigma.append(np.linalg.det(sigma[sigma_ID]))
         except np.linalg.LinAlgError:
-            print("The covariance matrix associated with Class " + str(uniq[j]) + " is still SINGULAR")
+            # print("The covariance matrix associated with Class " + str(uniq[j]) + " is still SINGULAR")
             sigma_inv[sigma_ID] = np.linalg.pinv(sigma[sigma_ID], rcond = cond_tolerance)
         except:
-            print("Unexpected error")
+            # print("Unexpected error")
             raise 
                 
     ###########################################################################            
@@ -251,10 +251,10 @@ def ss_GaussianMixtureModels(Xtrain, ytrain, Xtest, ytest,beta, tol, max_iterati
                 rank = len(s[s>cond_tolerance])
                 det_sigma[j] = np.prod(s[:rank])
             except np.linalg.LinAlgError:
-                print("The covariance matrix associated with Class " + str(uniq[j]) + " has singular values, so its determinant and inverse has issues")
-                sigma_inv[sigma_ID] = np.linalg.pinv(sigma[sigma_ID], rcond = cond_tolerance)
+                # print("The covariance matrix associated with Class " + str(uniq[j]) + " has singular values, so its determinant and inverse has issues")
+                sigma_inv[sigma_ID] = np.linalg.pinv(sigma[sigma_ID], rcond = cond_tolerance, )
             except:
-                print("Unexpected error")
+                # print("Unexpected error")
                 raise 
             
             
@@ -267,7 +267,7 @@ def ss_GaussianMixtureModels(Xtrain, ytrain, Xtest, ytest,beta, tol, max_iterati
         ## The early stopping criteria
         if early_stop == 'True': 
             if (Objective[t] - Objective[t+1]) > 0:
-                print('Objective function is INCREASING... stopping early and using the GAMMA from the previous iteration')
+                # print('Objective function is INCREASING... stopping early and using the GAMMA from the previous iteration')
                 GAMMA = np.array(GAMMA_old)
                 break
         
@@ -275,7 +275,7 @@ def ss_GaussianMixtureModels(Xtrain, ytrain, Xtest, ytest,beta, tol, max_iterati
         t = t + 1
         
         if t == max_iterations:
-            print("Max number of iterations reached")
+            # print("Max number of iterations reached")
             break
        
     # print("The number of iterations used: ", t)   

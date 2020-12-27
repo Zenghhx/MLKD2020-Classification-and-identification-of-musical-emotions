@@ -178,10 +178,10 @@ class ManifoldRegularization:
         return pred, acc
 
 if __name__ == "__main__":
-    data  = numpy.load('dataset/feature.npy')
+    data  = numpy.load('data/multi/numpy/feature.npy')
     stander = StandardScaler()
     data  = stander.fit_transform(data)
-    label = numpy.load('dataset/label.npy').astype(numpy.float64)
+    label = numpy.load('data/multi/numpy/label.npy').astype(numpy.float64)
 
     # label[label<=3] = 1
     # label[label>3]  = 2
@@ -226,6 +226,7 @@ if __name__ == "__main__":
 
     acc = numpy.sum( pred[:u]==label[:u] )/(u)
     acc_s = numpy.sum( pred[u:]==label[u:] )/(l)
+    print(acc)
     # W = Construct_Adjacency_Graph(data, k = 7)
 
 

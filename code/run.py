@@ -35,24 +35,42 @@ train_label = label[index][:int(rate*len(data))]
 test_data = data[index][int(rate*len(data)):]
 test_label = label[index][int(rate*len(data)):]
 
-## 有监督
-# clf_dic = ['KNN1','KNN2','PA','Perceptron','SGD','Guass','GuassNB','SVC','LinSVC','NuSVC','Tree','MLP']
-# for clf in clf_dic:
-#     acc,matrix = classifier.classifier(train_data,train_label,test_data,test_label,clf)
-#     print("Classifier "+clf+" :%f"%acc)
-#     print(matrix)
+# 有监督
+clf_dic = ['KNN1','KNN2','PA','Perceptron','SGD','Guass','GuassNB','SVC','LinSVC','NuSVC','Tree','MLP']
+for clf in clf_dic:
+    acc,matrix = classifier.classifier(train_data,train_label,test_data,test_label,clf)
+    print("Classifier "+clf+" :%f"%acc)
+    print(matrix)
 
-##半监督
-#标签传播LP
-# acc,matrix = classifier.classifier(train_data,train_label,test_data,test_label,'semi-LP')
-# print("Classifier "+clf+" :%f"%acc)
-# print(matrix)
-#局部一致性LGC
-# acc,_ = classifier.LGC(train_data,train_label,test_data,test_label)
-# print("Classifier LGC:%f"%acc)
-#混合高斯
-# acc,_ = ss_GaussianMixtureModels(train_data,train_label,test_data,test_label,0.7,1.0,1000,True)
-# print("Classifier GMM:%f"%acc)
+#半监督
+# 标签传播LP
+acc,matrix = classifier.classifier(train_data,train_label,test_data,test_label,'semi-LP')
+print("Classifier "+'LP'+" :%f"%acc)
+print(matrix)
+# 局部一致性LGC
+acc,_ = classifier.LGC(train_data,train_label,test_data,test_label)
+print("Classifier LGC:%f"%acc)
+# 混合高斯 有时数据分布不好时会产生奇异矩阵, 因此递归调用, 直到得到合理的结果 出现这种情况时会弹出警告, 但最终结果将会是正常的. 
+def guass(train_data,train_label,test_data,test_label,param1,param2,param3,param4, data):
+    try:
+        acc,_ = ss_GaussianMixtureModels(train_data,train_label,test_data,test_label,param1,param2,param3,param4)
+        return acc
+    except:
+        index = numpy.arange(len(data))
+        numpy.random.shuffle(index)
+
+        data = StandardScaler().fit_transform(data)
+        train_data = data[index][:int(rate*len(data))]
+        train_label = label[index][:int(rate*len(data))]
+        test_data = data[index][int(rate*len(data)):]
+        test_label = label[index][int(rate*len(data)):]
+        acc = guass(train_data,train_label,test_data,test_label,param1,param2,param3,param4, data)
+        return acc
+
+acc = guass(train_data,train_label,test_data,test_label,0.7,1.0,1000,True, data)
+
+
+print("Classifier GMM:%f"%acc)
 #S3VM
 # in S3VM.py
 #MR
